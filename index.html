@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>IRCTC Rail Connect – UX Case Study</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="android.css" />
+  <script src="script.js"></script>
+</head>
+<body>
+  
+  <!-- Mobile menu button -->
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+    ☰
+  </button>
+
+  <!-- Backdrop for mobile sidebar (insert once, directly inside body) -->
+<div id="sidebarBackdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+
+  <div class="page">
+    <!-- SIDE NAVIGATION (VERTICAL) -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+       
+        <div class="sidebar-logo-text">IRCTC Case Study</div>
+      </div>
+      <!-- <div class="sidebar-sub">
+        Redesign of the IRCTC Rail Connect app to make train booking calmer and more focused.
+      </div> -->
+      <ul class="sidebar-nav">
+        <li><a href="#intro" class="sidebar-link"><span>00</span> Intro</a></li>
+        <li><a href="#problem-goals" class="sidebar-link "><span>01</span> Problem &amp; Goals</a></li>
+        <li><a href="#process" class="sidebar-link"><span>02</span> My Design Process</a></li>
+        <li><a href="#scope-flow" class="sidebar-link"><span>03</span> Scope &amp; User Flow</a></li>
+        <li><a href="#challenges" class="sidebar-link"><span>04</span> Design Challenges &amp; Iterations</a></li>
+        <li><a href="#final-design" class="sidebar-link"><span>05</span> Final Design Highlights</a></li>
+        <li><a href="#prototype" class="sidebar-link"><span>06</span> Prototype and UI kit</a></li>
+  <!-- <li><a href="#ui-kit" class="sidebar-link"><span>07</span> UI Kit</a></li> -->
+
+  <li><a href="#impact" class="sidebar-link"><span>07</span> Impact &amp; Learnings</a></li>
+</ul>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="content">
+      <!-- HERO / TITLE -->
+      <header class="hero" id="intro">
+        <div class="hero-tag">
+          <span>Concept Redesign</span> · IRCTC Rail Connect
+        </div>
+        <h1 class="hero-title">
+          Redesigning IRCTC Rail Connect: Making train booking feel simple again
+        </h1>
+        <p class="hero-subtitle">
+          A UX / UI exploration to put train journeys back at the centre of the experience,
+          reduce cognitive load and modernise the visuals while still feeling like an
+          official government app.
+        </p>
+        <div class="hero-meta">
+          <div class="meta-item"><strong>Role</strong> · Solo Product Designer</div>
+          <div class="meta-item"><strong>Timeline</strong> · Personal project (2025)</div>
+          <div class="meta-item"><strong>Platform</strong> · Android mobile app</div>
+          <div class="meta-item"><strong>Tools</strong> · Figma, FigJam, NotesApp</div>
+        </div>
+      </header>
+
+   <section id="context-role" class="section">
+  <div class="two-column context-row">
+
+    <div class="context-left">
+      <h2 class="section-title">Why this project?</h2>
+      
+          <p>
+              I’ve barely used IRCTC myself, and I don’t have much prior knowledge about how train
+              booking works in detail. That became the reason I wanted to redesign it. I was curious
+              to understand how a dense government product feels to someone new and what it would
+              take to simplify the experience without removing important functionality.
+            </p>
+            <p>
+              I saw this as an opportunity to practise analysing an unfamiliar domain, breaking down
+              a complex interface and rethinking the experience with a beginner-friendly perspective.
+              Most of my understanding came from secondary research: watching walkthrough videos,
+              reading app store reviews, exploring existing screens and speaking with frequent
+              travellers about where they feel stuck.
+            </p>
+    </div>
+
+    <div class="context-right" style="margin-top: 5px;">
+      <h2 class="section-title-small">What I focused on in this redesign</h2>
+      <ul>
+        <li>Understanding user pain points from an outsider’s point of view</li>
+        <li>Analysing navigation, hierarchy and information overload</li>
+        <li>Restructuring the home screen around booking trains</li>
+        <li>Wireframing cleaner flows before hi-fi screens</li>
+        <li>Building a calm visual system without losing trustworthiness</li>
+        <li>Reflecting on decisions and iterations throughout the process</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="ecosystem-audit" class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-kicker">Ecosystem &amp; Competitor Scan</div>
+      <h2 class="section-title">IRCTC in context: ConfirmTkt &amp; TrainMan</h2>
+    </div>
+
+  </div>
+
+  <p>
+    To understand the landscape and what IRCTC could learn from other apps, I compared it with two popular third-party train booking apps 
+    to identify key differences and opportunities.</p>
+
+  <div class="two-column">
+    <div>
+      <h3 class="subheading">IRCTC (official)</h3>
+      <ul>
+        <li>Powerful, official service with full feature set (bookings, PNR, trains, transactions).</li>
+        <li>Feels dated and information-dense; navigation often feels desktop-first.</li>
+        <li>Refunds and some utilities are slow/complex (higher user friction in edge cases).</li>
+        <li>Strong trust factor because it is the government-backed app — important to preserve.</li>
+      </ul>
+
+      <h3 class="subheading">ConfirmTkt (third-party)</h3>
+      <ul>
+        <li>More modern UI patterns and clearer flows for booking and refunds.</li>
+        <li>Helpful features like waiting-list prediction and quicker refund summaries.</li>
+        <li>Tends to prioritise convenience and fast decision-making (good for inspiration).</li>
+      </ul>
+
+      <h3 class="subheading">TrainMan (third-party)</h3>
+      <ul>
+        <li>Strong utility features: PNR status, live tracking, quick notifications.</li>
+        <li>Simple, focused screens for the most common tasks (booking, status, tracking).</li>
+        <li>Good example of presenting dense information in smaller, digestible chunks.</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="subheading">Design takeaways</h3>
+      <ul>
+        <li>Keep IRCTC’s trust signals but simplify the visual hierarchy so tasks are obvious.</li>
+        <li>Borrow quick, helpful features (e.g., waiting-list cues, clear refund summaries) without adding clutter.</li>
+        <li>Group utilities so they don’t compete visually with the main booking flow.</li>
+        <li>Prioritise first-time user clarity — reduce overwhelming choices upon first view.</li>
+      </ul>
+
+      <div class="highlight-card" style="margin-top:12px;">
+        <strong>Why this matters</strong>
+        <p style="margin-top:6px; font-size:13px; color:var(--text-muted);">
+          The redesign aims to bridge IRCTC’s official strength with the usability lessons from third-party apps: trusted, but easier to use.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+      <!-- 01: PROBLEM & GOALS -->
+      <section id="problem-goals" class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">01 · Problem &amp; Goals</div>
+            <h2 class="section-title">What’s not working in the current app?</h2>
+          </div>
+          <!-- <div class="section-caption">
+            Analysing the existing IRCTC Rail Connect experience from a beginner perspective.
+          </div> -->
+        </div>
+
+        <p>
+          Approaching IRCTC Rail Connect as a relatively new user, the experience often felt
+          overwhelming and harder than it needed to be. From walkthroughs, reviews and
+          conversations with frequent travellers, these issues surfaced repeatedly.
+        </p>
+        <p>
+          IRCTC Rail Connect supports a lot of features, but the way they are presented
+          makes the core journey of booking and managing train travel harder than it
+          needs to be. From my walkthrough, these issues stood out the most:
+        </p>
+
+        <!-- SUMMARY VIEW: PAIN POINTS → IMPACT → INTENSITY -->
+        <h3 class="subheading">Summary – Pain points mapped to impact</h3>
+        <div class="pain-matrix">
+          <div class="matrix-row matrix-row--header">
+            <div class="matrix-title">Pain point</div>
+            <div class="matrix-title">Impact on users</div>
+            <!-- <div class="matrix-title">Intensity</div> -->
+          </div>
+
+          <div class="matrix-row">
+            <div class="matrix-cell">
+              <strong>Core task is hidden behind an extra step.</strong>
+              Booking a train ticket is tucked under a generic “Train” option.
+            </div>
+            <div class="matrix-cell">
+             <b>High:</b> Users spend extra time deciding where to tap first; the main action doesn’t feel obvious.
+            </div>
+            <!-- <div class="matrix-badge high">High</div> -->
+          </div>
+
+          <div class="matrix-row">
+            <div class="matrix-cell">
+              <strong>Flights and buses are over-emphasised.</strong>
+              Secondary services visually compete with trains.
+            </div>
+            <div class="matrix-cell">
+             <b>Medium:</b> Core train journey feels diluted; the home screen looks like a mixed travel marketplace.
+            </div>
+            <!-- <div class="matrix-badge medium">Medium</div> -->
+          </div>
+
+          <div class="matrix-row">
+            <div class="matrix-cell">
+              <strong>Ads appear before any ticket-booking option.</strong>
+            </div>
+            <div class="matrix-cell">
+             <b>Medium:</b> Users are distracted at the most critical step, increasing friction and drop-off risk.
+            </div>
+            <!-- <div class="matrix-badge medium">Medium</div> -->
+          </div>
+
+          <div class="matrix-row">
+            <div class="matrix-cell">
+              <strong>Too many top-level options before scrolling.</strong>
+              13+ tappable items on first view.
+            </div>
+            <div class="matrix-cell">
+             <b>High:</b> New or low-tech users feel overwhelmed and unsure where to start.
+            </div>
+            <!-- <div class="matrix-badge high">High</div> -->
+          </div>
+
+          <div class="matrix-row">
+            <div class="matrix-cell">
+              <strong>Order food &amp; Bills &amp; Shop feel out of place.</strong>
+            </div>
+            <div class="matrix-cell">
+            <b>Low:</b>  Breaks mental grouping of train-related tasks vs extras, adding cognitive load.
+            </div>
+            <!-- <div class="matrix-badge low">Low</div> -->
+          </div>
+        </div>
+
+        <!-- DETAILED BREAKDOWN – original content preserved -->
+        <h3 class="subheading" style="font-size: 20px;">Detailed breakdown</h3>
+        <div class="two-column">
+          <div>
+            <p><strong>Problem – key pain points</strong></p>
+            <ul>
+              <li>
+                <strong >Core task is hidden behind an extra step.</strong>
+                The main reason people open the app is to book a train ticket, but that
+                action is tucked under a generic “Train” option instead of being surfaced
+                directly on the home screen.
+              </li>
+              <li>
+                <strong>Flights and buses are over-emphasised.</strong>
+                Flights and buses are secondary use cases, yet they visually compete with
+                train booking instead of being treated as supporting options.
+              </li>
+              <li>
+                <strong>Ads grab attention before ticket booking.</strong>
+                A promotional banner appears before any ticket-booking option, pulling focus
+                away from the primary task and disrupting the flow.
+              </li>
+              <li>
+                <strong>Too many top-level options before scrolling.</strong>
+                There are 13+ tappable options visible before scrolling. Items like YouTube
+                or Gift Card feel irrelevant in that moment and add to cognitive overload.
+              </li>
+              <li>
+                <strong>Order food is mixed with unrelated categories.</strong>
+                “Order food in train” sits alongside flights and buses, even though it
+                naturally belongs with train-related utilities and services.
+              </li>
+              <li>
+                <strong>Bills &amp; Shop feels out of place.</strong>
+                The Bills &amp; Shop section feels like a separate mini-app inside IRCTC,
+                with little connection to the core journey of planning and managing train travel.
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p><strong>Impact on users</strong></p>
+            <ul>
+              <li>Users spend extra time just deciding where to tap first.</li>
+              <li>New or low-tech users feel overwhelmed and unsure of the flow.</li>
+              <li>Routine actions like booking, checking PNR or live status feel heavier than they should.</li>
+              <li>
+                The app feels functional but not very focused on helping users complete
+                their main task quickly.
+              </li>
+            </ul>
+
+            <p><strong>Goals for the redesign</strong></p>
+            <ul>
+              <li>Make train ticket booking the clear hero action of the app.</li>
+              <li>Give secondary services (flights, buses) less visual weight.</li>
+              <li>Reduce cognitive load by grouping and reordering content.</li>
+              <li>
+                Modernise the UI without losing the “official, trustworthy” feeling of a
+                government product.
+              </li>
+              <li>
+                Add subtle personalisation so the experience feels more like a companion
+                than a static portal.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02: MY DESIGN PROCESS -->
+      <section id="process" class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">02 · My Design Process</div>
+            <h2 class="section-title">How I approached this redesign</h2>
+          </div>
+          
+        </div>
+
+        <p>
+           As a self-initiated project, I used a simple, iterative process centred around quick exploration, 
+           visual refinement and documenting key decisions.
+        </p>
+
+        <div class="process-steps">
+          <div class="process-card">
+            <div class="process-step">Step 01</div>
+            <div class="process-title">Audit &amp; heuristic review</div>
+            <div class="process-body">
+              Walked through the existing app, captured screenshots and noted
+              usability issues, confusing labels and visual inconsistencies.
+            </div>
+          </div>
+
+          <div class="process-card">
+            <div class="process-step">Step 02</div>
+            <div class="process-title">Define problems &amp; prioritise</div>
+            <div class="process-body">
+              Grouped issues into navigation, home hierarchy, information overload and
+              visual consistency. Prioritised flows like booking and train search.
+            </div>
+          </div>
+
+          <div class="process-card">
+            <div class="process-step">Step 03</div>
+            <div class="process-title">Wireframes &amp; flow</div>
+            <div class="process-body">
+              Sketched low-fidelity layouts for the home, train search and results to
+              explore different hierarchies without worrying about colours.
+            </div>
+          </div>
+
+          <div class="process-card">
+            <div class="process-step">Step 04</div>
+            <div class="process-title">High-fidelity UI</div>
+            <div class="process-body">
+              Defined type, spacing, cards, chips and button styles that still feel like
+              IRCTC but cleaner and calmer.
+            </div>
+          </div>
+
+          <div class="process-card">
+            <div class="process-step">Step 05</div>
+            <div class="process-title">Iteration &amp; polishing</div>
+            <div class="process-body">
+              Reworked the header, bottom navigation, home content and train utilities
+              after realising my first version was “prettier” but not much simpler.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03: SCOPE & USER FLOW -->
+      <section id="scope-flow" class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">03 · Scope &amp; User Flow</div>
+            <h2 class="section-title">What I chose to redesign</h2>
+          </div>
+         
+        </div>
+
+        <div class="two-column">
+          <div>
+            <p><strong>Scope</strong></p>
+            <p>
+              This is a concept redesign focused on improving the core experience, not
+              rebuilding every IRCTC feature. I focused on:
+            </p>
+            <ul>
+              <li>Home screen (dashboard &amp; primary actions)</li>
+              <li>Train search &amp; results screens</li>
+              <li>Bills &amp; Shops and Transactions overview</li>
+              <li>Login &amp; profile header patterns</li>
+              <li>Bottom navigation &amp; utilities (chips on Train screen)</li>
+            </ul>
+            <p>
+              All back-end logic, rules and policies from IRCTC stay the same. The
+              redesign focuses only on UX and UI.
+            </p>
+          </div>
+
+          <div>
+            <p><strong>Updated primary flow</strong></p>
+            <div class="flow-list">
+              <div class="flow-card">
+                <div class="flow-title">1. Open app → Home</div>
+                <div class="flow-body">
+                  User sees a personalised greeting, a short travel tip and four clear
+                  train-related CTAs.
+                </div>
+              </div>
+              <div class="flow-card">
+                <div class="flow-title">2. Home → Book Tickets</div>
+                <div class="flow-body">
+                  Tap “Book Tickets” to land on a focused Train screen with From / To,
+                  date, class and quota.
+                </div>
+              </div>
+              <div class="flow-card">
+                <div class="flow-title">3. Train search → Results</div>
+                <div class="flow-body">
+                  View trains with colour-coded availability cards and a sticky date row.
+                </div>
+              </div>
+              <div class="flow-card">
+                <div class="flow-title">4. Results → Passenger &amp; payment</div>
+                <div class="flow-body">
+                  Select passengers, review summary and then proceed to payment.
+                </div>
+              </div>
+            </div>
+
+            <!-- Visual placeholder for a future user flow image -->
+            <!-- <div class="flow-diagram">
+              Replace this div with an <img> of your user flow diagram
+              <div class="image-placeholder">User flow diagram – replace with final image</div>
+              <p class="image-caption">
+                High-level flow of the core booking journey I focused on in this case study.
+              </p>
+            </div> -->
+          </div>
+        </div>
+      </section>
+
+       <!-- 04: DESIGN CHALLENGES & ITERATIONS -->
+      <section id="challenges" class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">04 · Design Challenges &amp; Iterations</div>
+            <h2 class="section-title">Lo-fi wireframes &amp; early explorations</h2>
+          </div>
+      
+        </div>
+
+        <!-- Wireframes & early explorations -->
+        <h3 class="subsection-title">Designing a calmer bridge, not a brand-new app</h3>
+        <p>
+          Before committing to any visual style, I explored low-fidelity layouts for the
+          home screen, train search and results. The goal was to surface the primary “Book ticket”
+          flow clearly while still keeping secondary services discoverable.
+        </p>
+
+        <div class="image-grid-w">
+          <figure class="image-card-w">
+            <figcaption class="image-caption-w">
+              Home screen wireframe
+            </figcaption>
+            <div class="image-placeholder-w">
+              <img src="media/wireframe1.jpeg" class="case-image-w" alt="Lo-fi home screen wireframe">
+            </div>
+          </figure>
+
+          <figure class="image-card-w">
+            <figcaption class="image-caption-w">
+              Train search wireframe
+            </figcaption>
+            <div class="image-placeholder-w">
+              <img src="media/wireframe2.jpeg" class="case-image-w" alt="Lo-fi train search wireframe">
+            </div>
+          </figure>
+
+          <figure class="image-card-w">
+            <figcaption class="image-caption-w">
+              Train Availability page
+            </figcaption>
+            <div class="image-placeholder-w">
+              <img src="media/wf4.jpeg" class="case-image-w" alt="Lo-fi train search wireframe">
+            </div>
+          </figure>
+
+          <figure class="image-card-w">
+            <figcaption class="image-caption-w">
+              Passenger Details
+            </figcaption>
+            <div class="image-placeholder-w">
+              <img src="media/wf3.jpeg" class="case-image-w" alt="Lo-fi train search wireframe">
+            </div>
+          </figure>
+
+          
+        </div>
+
+        <!-- HOME SCREEN -->
+        <h3 class="subsection-title">Home screen process</h3>
+
+        <div class="image-grid">
+          <figure class="image-card">
+            <figcaption class="image-caption">
+             <b> Current IRCTC home screen</b><br><br><br><br>
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/home.jpeg" class="case-image" alt="Current IRCTC home screen">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+             <b>First redesign: </b> Visually cleaner but still cluttered and unclear.<br><br><br>
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/homefirst.png" class="case-image" alt="First redesigned home screen">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+             <b>Second iteration: </b> Replaced number of passengers with a travel tip and a bottom navigation bar for better structure.<br>
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/home2nd.png" class="case-image" alt="Second iteration of home screen">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              <b>Final iteration:</b> Toned down the ad into a text banner, rearranged the header and added the IRCTC logo for a calmer, branded hero.
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/homefinal.png" class="case-image" alt="Final redesigned home screen">
+            </div>
+          </figure>
+        </div>
+
+        <!-- CURRENT TRAIN FLOW -->
+        <h3 class="subsection-title">Current train search flow</h3>
+
+        <div class="image-grid">
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              Train tab from the current home screen
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/train1.jpeg" class="case-image" alt="Current train tab on home page">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              Current train search form
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/train search.jpeg" class="case-image" alt="Current train search form">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              Current train list view
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/train names.jpeg" class="case-image" alt="Current train list view">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              Current availability view
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/train list.jpeg" class="case-image" alt="Current availability view">
+            </div>
+          </figure>
+        </div>
+
+        <!-- NEW TRAIN FLOW -->
+        <h3 class="subsection-title">New train flow process</h3>
+
+        <div class="image-grid">
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              Train booking from home
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/hometotrain.png" class="case-image" alt="Redesigned train tab from home">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              Train search form
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/final train search.png" class="case-image" alt="Redesigned train search form">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+             Train list layout
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/newtrainlist.png" class="case-image" alt="Redesigned train list layout">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              Train availability view
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/newtrainavailability.png" class="case-image" alt="Redesigned availability view">
+            </div>
+          </figure>
+        </div>
+
+        <!-- WHAT DIDN'T WORK -->
+        <h3 class="subsection-title">What didn’t work (brain fogs, wireframes & discarded ideas)</h3>
+
+        <div class="image-grid">
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              Figuring out color choices <br><br>
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/bf5.png" class="case-image" alt="Discarded utilities layout">
+            </div>
+          </figure>
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              Exploring train availability layouts<br><br>
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/bf1.png" class="case-image" alt="Discarded home screen exploration">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              Thinking why not show class and availability together
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/bf2.png" class="case-image" alt="Discarded train search exploration">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              Figuring out colors again<br><br>
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/bf3.png" class="case-image" alt="Discarded train list exploration">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              Figuring how to present extra links/buttons that currently available on IRCTC train page
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/bf6.png" class="case-image" alt="Discarded availability exploration">
+            </div>
+          </figure>
+
+          
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              Figuring out layouts and colors<br><br><br>
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/bf4.png" class="case-image" alt="Discarded compressed layout">
+            </div>
+          </figure>
+        </div>
+
+        <!-- CHECKOUT & PAYMENT -->
+        <h3 class="subsection-title">Checkout &amp; payment</h3>
+
+        <div class="image-grid">
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              Existing passenger details screen<br><br><br>
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/passenger details.jpeg" class="case-image" alt="Current passenger details screen">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+             <b>Redesigned passenger details:</b>  clearer boarding station and traveller information.<br>
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/newpassengerdeails.png" class="case-image" alt="Redesigned passenger details screen">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              Existing review &amp; payment screen<br><br><br>
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/oldpayment.jpeg" class="case-image" alt="Current review and payment screen">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              <b>Redesigned review &amp; pay: </b>a cleaner summary of fare, passengers and actions.<br><br>
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/new payment.png" class="case-image" alt="Redesigned review and pay screen">
+            </div>
+          </figure>
+        </div>
+
+        <!-- LOGIN -->
+        <h3 class="subsection-title">Login</h3>
+
+        <div class="image-grid">
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              Existing IRCTC login screen
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/login.jpeg" class="case-image" alt="Current IRCTC login screen">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+            <b> Redesigned login: </b> clearer hierarchy and focused CTA.
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/newlogin.png" class="case-image" alt="Redesigned IRCTC login screen">
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 05: FINAL DESIGN HIGHLIGHTS -->
+      <section id="final-design" class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">05 · Final Design Highlights</div>
+            <h2 class="section-title">What the redesigned experience looks like</h2>
+          </div>
+        
+        </div>
+
+        <!-- Final screens gallery -->
+        <h3 class="subsection-title">Key screens</h3>
+        <div class="image-grid">
+          <figure class="image-card">
+            <figcaption class="image-caption">
+             <b>Home</b>  as a calm starting point: personalised greeting, a short travel tip and four clearly separated primary actions for trains.
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/homefinal.png" class="case-image" alt="Final home screen">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              Simplified <b>login</b> screen with clear hierarchy between credentials and OTP flow.<br><br>
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/newlogin.png" class="case-image" alt="Final login screen">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+             <b>Bills &amp; Shops</b>  layout aligned with the rest of the app, so it no longer feels like a separate product.<br><br>
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/billsnshops.png" class="case-image" alt="Redesigned Bills &amp; Shops screen">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              Cleaner <b>“More” </b> menu organised into a readable, icon-led list.<br><br><br>
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/more.png" class="case-image" alt="Redesigned More menu">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              Secondary services grouped into a tidy grid, clearly separated from the main train journey.<br><br>
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/hometotrain.png" class="case-image" alt="Secondary services grid">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+              Delhi Metro, File TDR, Schedule and Chart Vacancy moved into light chips below the form—easy to tap but no longer 
+              competing with Search.
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/final train search.png" class="case-image" alt="Redesigned train search with chips">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+             <b> Train list view</b> with clearer hierarchy and colour-coded availability.<br><br><br>
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/newtrainlist.png" class="case-image" alt="Redesigned train list view">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+            <b>  Availability panel</b> that keeps the dense information but makes scanning easier.<br><br><br>
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/newtrainavailability.png" class="case-image" alt="Redesigned availability view">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+             <b>Passenger details </b> screen focused on who is travelling and their key preferences.
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/newpassengerdeails.png" class="case-image" alt="Final passenger details screen">
+            </div>
+          </figure>
+
+          <figure class="image-card">
+            <figcaption class="image-caption">
+            <b> Review &amp; pay screen</b>  with a clear summary before committing to payment.<br><br>
+            </figcaption>
+            <div class="image-placeholder">
+              <img src="media/new payment.png" class="case-image" alt="Final review and pay screen">
+            </div>
+          </figure>
+        </div>
+      </section>
+
+        
+          
+
+       <!-- PROTOTYPE (clean link only) -->
+<section id="prototype" class="section prototype-section">
+
+  <div class="prototype-cta" style="padding:0; background:transparent; border:none;">
+    <!-- Replace href="#" with your actual prototype (Figma/Proto) link -->
+    <a href="https://www.figma.com/proto/yz4Qzt7uckWc9Ao7q90O1J/Untitled?node-id=1-2&t=xxd2h2IflSgTiOQe-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=103%3A51"
+     class="button-primary" target="_blank" rel="noopener">View interactive prototype</a>
+
+</section>
+
+
+        <section id="ui-kit" class="section">
+  <div class="section-header">
+    <div>
+      <div class="section-kicker">Design System</div>
+      <h2 class="section-title">UI Kit &amp; Visual Language</h2>
+    </div>
+    <!-- <div class="section-caption">Foundations that shaped the redesigned experience</div> -->
+  </div>
+
+ <h3 class="subsection-title" style="text-align:left;">
+  <span style="
+    display:inline-block;
+    width:8px;
+    height:8px;
+    background:#FE8B34;
+    transform:rotate(45deg);
+    margin-right:8px;
+  "></span>
+  Color System
+</h3>
+
+  <div class="ui-grid">
+    <div class="ui-card color-card">
+      <div class="color-block" style="background:#FFFFFF; border: 1px solid black;"></div>
+      <div class="color-info">
+        <strong>Primary Background</strong><br>#FFFFFF<br>60% Usage
+      </div>
+    </div>
+
+    <div class="ui-card color-card">
+      <div class="color-block" style="background:#FE8B34;"></div>
+      <div class="color-info">
+        <strong>Secondary Accent</strong><br>#FE8B34 (81% optional)<br>30% Usage
+      </div>
+    </div>
+
+    <div class="ui-card color-card">
+      <div class="color-block" style="background:#A3561B;"></div>
+      <div class="color-info">
+        <strong>Button Stroke</strong><br>#A3561B<br>Depth & Contrast
+      </div>
+    </div>
+
+    <div class="ui-card color-card">
+      <div class="color-block" style="background:#F3F3F3;"></div>
+      <div class="color-info">
+        <strong>Grey – Footer & Surfaces</strong><br>#F3F3F3
+      </div>
+    </div>
+
+    <div class="ui-card color-card">
+      <div class="color-block" style="background:#000000;"></div>
+      <div class="color-info">
+        <strong>Icons & Text</strong><br>#000000
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subsection-title" style="text-align:left;">
+  <span style="
+    display:inline-block;
+    width:8px;
+    height:8px;
+    background:#FE8B34;
+    transform:rotate(45deg);
+    margin-right:8px;
+  "></span>
+  Primary Buttons
+</h3>
+
+  <div class="button-preview">
+    <button class="btn-preview"  >Search Trains</button>
+  </div>
+
+  <div class="type-table-container">
+  <h3 class="subsection-title" style="text-align:left;">
+  <span style="
+    display:inline-block;
+    width:8px;
+    height:8px;
+    background:#FE8B34;
+    transform:rotate(45deg);
+    margin-right:8px;
+  "></span>
+  Typography Scale
+</h3>
+
+
+  <table class="type-table">
+    <thead>
+      <tr>
+        <th>Style</th>
+        <th>Typeface</th>
+        <th>Size</th>
+        <th>Weight</th>
+        <th>Usage</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td><strong>Hero / Display</strong></td>
+        <td>Inter</td>
+        <td>22px</td>
+        <td>Bold</td>
+        <td>Train names, key screen titles</td>
+      </tr>
+
+      <tr>
+        <td><strong>Heading 1</strong></td>
+        <td>Inter</td>
+        <td>20px</td>
+        <td>Medium</td>
+        <td>Page & major section headers</td>
+      </tr>
+
+      <tr>
+        <td><strong>Heading 2</strong></td>
+        <td>Inter</td>
+        <td>18px</td>
+        <td>Medium</td>
+        <td>Form titles, sub-section headers</td>
+      </tr>
+
+      <tr>
+        <td><strong>Body</strong></td>
+        <td>Inter</td>
+        <td>15px</td>
+        <td>Regular</td>
+        <td>Main interface text, passenger names</td>
+      </tr>
+
+      <tr>
+        <td><strong>Body Small</strong></td>
+        <td>Inter</td>
+        <td>14px</td>
+        <td>Medium</td>
+        <td>Tips, supporting labels</td>
+      </tr>
+
+      <tr>
+        <td><strong>Caption</strong></td>
+        <td>Inter</td>
+        <td>13px</td>
+        <td>Regular</td>
+        <td>Notes, disclaimers</td>
+      </tr>
+
+      <tr>
+        <td><strong>Micro</strong></td>
+        <td>Inter</td>
+        <td>12px</td>
+        <td>Medium</td>
+        <td>Chip text, dropdown items</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</section>
+
+
+      <!-- 06: IMPACT & LEARNINGS -->
+      <section id="impact" class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">06 · Impact &amp; Learnings</div>
+            <h2 class="section-title">If this went live, and what I learnt</h2>
+          </div>
+          <!-- <div class="section-caption">
+            A quick reflection on what this project taught me about designing for dense,
+            government-style apps.
+          </div> -->
+        </div>
+
+        <div class="two-column">
+          <div>
+            <p><strong>Potential impact (if implemented)</strong></p>
+            <ul class="impact-list">
+              <li>Faster access to core train-related tasks from the home screen.</li>
+              <li>Reduced cognitive load through clearer grouping and hierarchy.</li>
+              <li>A more modern, trustworthy perception of the IRCTC app.</li>
+              <li>Better scalability for future services inside the same structure.</li>
+            </ul>
+          </div>
+          <div>
+            <p><strong>Personal learnings</strong></p>
+            <ul class="impact-list">
+              <li>
+                Redesigning a government app is more about trust and clarity than flashy visuals.
+              </li>
+              <li>
+                Sometimes a redesign is a bridge – you don’t have to solve everything at once
+                to make the experience noticeably better.
+              </li>
+              <li>
+                Writing the case study while designing forces more intentional decisions
+                instead of “aesthetic” ones.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="footer" style="text-align: center;">
+    
+  <!-- <p>Designed with curiosity, clarity & chai ☕</p> -->
+  <p>© 2025 Sahana R</p>
+
+  </div>
+</body>
+</html>
